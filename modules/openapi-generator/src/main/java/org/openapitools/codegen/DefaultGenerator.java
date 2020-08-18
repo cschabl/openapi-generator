@@ -747,7 +747,9 @@ public class DefaultGenerator implements Generator {
         URL url = URLPathUtils.getServerURL(openAPI, config.serverVariableOverrides());
 
         bundle.put("openAPI", openAPI);
-        bundle.put("basePath", basePath);
+        if (!bundle.containsKey("basePath")) {
+            bundle.put("basePath", basePath);
+        }
         bundle.put("basePathWithoutHost", basePathWithoutHost);
         bundle.put("scheme", URLPathUtils.getScheme(url, config));
         bundle.put("host", url.getHost());
